@@ -55,7 +55,7 @@ else
 fi
 
 mkdir -p "$BINDIR"
-tar -xzf "$TARBALL" -C "$BINDIR" cimon
+tar -xzf "$TARBALL" -C "$BINDIR" --strip-components=1
 chmod +x "$BINDIR/cimon"
 
 echo "cimon ${PINNED_VERSION} installed to ${BINDIR}/cimon"
