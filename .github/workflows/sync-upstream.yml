@@ -28,7 +28,7 @@ jobs:
       - name: Check if already mirrored
         id: check
         run: |
-          STATUS=$(curl -o /dev/null -w "%{http_code}" -fsSL \
+          STATUS=$(curl -o /dev/null -w "%{http_code}" -sSL \
             -H "Authorization: Bearer ${{ github.token }}" \
             https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ steps.upstream.outputs.tag }})
 
