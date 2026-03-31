@@ -49,6 +49,9 @@ jobs:
           curl -fsSL "${BASE}/cimon_linux_x86_64.tar.gz" -o cimon_linux_x86_64.tar.gz
           curl -fsSL "${BASE}/cimon_linux_arm64.tar.gz"  -o cimon_linux_arm64.tar.gz
           curl -fsSL "${BASE}/checksums.txt"             -o checksums.txt
+          curl -fsSL "${BASE}/cimon-sbom.spdx.json"      -o cimon-sbom.spdx.json
+          curl -fsSL "${BASE}/cimon-image-cosign.pub"    -o cimon-image-cosign.pub
+          curl -fsSL "${BASE}/cimon-image-cosign.sig"    -o cimon-image-cosign.sig
 
       - name: Verify checksums
         if: steps.check.outputs.already_mirrored == 'false'
@@ -69,7 +72,10 @@ jobs:
             --notes "Mirrored from CycodeLabs/cimon-releases@${TAG}" \
             cimon_linux_x86_64.tar.gz \
             cimon_linux_arm64.tar.gz \
-            checksums.txt
+            checksums.txt \
+            cimon-sbom.spdx.json \
+            cimon-image-cosign.pub \
+            cimon-image-cosign.sig
 
           echo "Release $TAG created with artifacts"
 
